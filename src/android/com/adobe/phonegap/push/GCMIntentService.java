@@ -183,10 +183,11 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                 }
                 continue;
             }
-
             String newKey = normalizeKey(key);
-            Log.d(LOG_TAG, "replace key " + key + " with " + newKey);
-            replaceKey(key, newKey, extras, newExtras);
+			if (!newExtras.containsKey(newKey)) {
+				Log.d(LOG_TAG, "replace key " + key + " with " + newKey);
+				replaceKey(key, newKey, extras, newExtras);
+			}
 
         } // while
 
