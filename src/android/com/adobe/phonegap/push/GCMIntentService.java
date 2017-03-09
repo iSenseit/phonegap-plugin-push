@@ -255,9 +255,12 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                 continue;
             }
 
+			// iSense it - Prevent replacing existing keys, to avoid overriding the message content when receiving from Kinvey.
             String newKey = normalizeKey(key, messageKey, titleKey);
-            Log.d(LOG_TAG, "replace key " + key + " with " + newKey);
-            replaceKey(context, key, newKey, extras, newExtras);
+			if (!newExtras.containsKey(newKey)) {
+				Log.d(LOG_TAG, "replace key " + key + " with " + newKey);
+				replaceKey(context, key, newKey, extras, newExtras);
+			}
 
         } // while
 

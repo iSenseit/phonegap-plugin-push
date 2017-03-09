@@ -2,6 +2,17 @@
 
 > Register and receive push notifications
 
+#iSense it fork
+
+**Why a fork?**
+To be compatible with the Kinvey notification service. https://www.kinvey.com/
+Kinvey sends the body content of the message as "MESSAGE" which is a the name already used in android. It isn't a problem as long as you don't need to send a title or any other custom element.
+But if you need to send custom keys, the GCMInterService will overwrite the message custom element with the original kinvey packet.
+Which will put an object in place of text on the Message property, leading to a very ugly notification.
+
+In all other use cases, use the official plugin.
+https://github.com/phonegap/phonegap-plugin-push
+
 # What is this?
 
 This plugin offers support to receive and handle native push notifications with a **single unified API**. 
